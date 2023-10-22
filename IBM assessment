@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import dash
 from dash import dcc
 from dash import html
@@ -33,7 +27,7 @@ year_list = [i for i in range(1980, 2024, 1)]
 # Create the layout of the app
 app.layout = html.Div([
     #TASK 2.1 Add title to the dashboard
-    html.H1("Automobile Sales Statistics Dashboard", style={'textAlign': 'left', 'color': "#000000", 'font-size': 0}),#May include style for title
+    html.H1("Automobile Sales Statistics Dashboard", style={'textAlign': 'left', 'color': "#000000", 'font-size': '24px'}),#May include style for title
     html.Div([#TASK 2.2: Add two dropdown menus
         html.Label("Select Statistics:"),
         dcc.Dropdown(
@@ -45,14 +39,15 @@ app.layout = html.Div([
             placeholder='Select a report type'
         )
     ]),
-    html.Div(dcc.Dropdown(
+    html.Div([html.Label("Select Year:"), dcc.Dropdown(
             id='select_year',
             options=[{'label': i, 'value': i} for i in year_list],
             placeholder='Select a year',
-        )),
+        )]),
     html.Div([#TASK 2.3: Add a division for output display
-    html.Div(id='output-container', className='chart-gird', style={'flex'})])
+    html.Div(id='output-container', className='chart-gird', style = {'display':'flex'})])
 ])
+
 #TASK 2.4: Creating Callbacks
 # Define the callback function to update the input container based on the selected statistics
 @app.callback(
