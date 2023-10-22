@@ -81,12 +81,12 @@ def update_output_container(select_year, dropdown_statistics):
         exp_rec = recession_data.groupby('Vehicle_Type')['Advertising_Expenditure'].mean().reset_index()
         R_chart3 = dcc.Graph(figure=px.pie(exp_rec, values='Advertising_Expenditure', names='Vehicle_Type', title='Total Expenditure Share by Vehicle Type during Recessions'))
 
-        unemploy = recession_data.groupby(['Vehicle_Type', 'Unemployment_Rate'])['Automobile_Sales'].mean().reset_index()
-        R_chart4 = dcc.Graph(figure=px.bar(unemploy, x='Unemployment_Rate', y='Automobile_Sales', color='Vehicle_Type', title='Effect of Unemployment Rate on Vehicle Type & Sales'))
+        unemploy = recession_data.groupby(['Vehicle_Type', 'unemployment_rate'])['Automobile_Sales'].mean().reset_index()
+        R_chart4 = dcc.Graph(figure=px.bar(unemploy, x='unemployment_rate', y='Automobile_Sales', color='Vehicle_Type', title='Effect of Unemployment Rate on Vehicle Type & Sales'))
 
         return [
-            html.Div(className='chart-item', children=[html.Div(R_chart1), html.Div(R_chart2)]),
-            html.Div(className='chart-item', children=[html.Div(R_chart3), html.Div(R_chart4)])
+            html.Div(className='chart-item', children=[html.Div(R_chart1,className='chart'), html.Div(R_chart2,className='chart')]),
+            html.Div(className='chart-item', children=[html.Div(R_chart3,className='chart'), html.Div(R_chart4,className='chart')])
         ]
 
     elif dropdown_statistics == 'Yearly Statistics':
